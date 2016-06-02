@@ -38,6 +38,6 @@ RUN apk add --no-cache curl make gcc g++ python linux-headers paxctl libgcc libs
       /usr/share/man /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /root/.gnupg \
       /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
 
-# install git and openssh (for 'private' npm modules hosted on github)
-RUN apk add --no-cache openssh git && \
+# install openssh (git is already in alpine-lein) for 'private' npm modules hosted on github
+RUN apk add --no-cache openssh && \
     rm -rf /tmp/* /var/cache/apk/*
