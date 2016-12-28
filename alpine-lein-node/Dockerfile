@@ -1,8 +1,8 @@
 FROM naartjie/alpine-lein
 
-# install node v6.6.0
+# install node v6.6.0nvm
 # taken from mhart/alpine-node http://bit.ly/1UaRTfr
-ENV VERSION=v6.6.0 NPM_VERSION=3
+ENV VERSION=v6.9.2 NPM_VERSION=3
 ENV CONFIG_FLAGS="--fully-static" DEL_PKGS="libgcc libstdc++" RM_DIRS=/usr/include
 
 RUN apk add --no-cache curl make gcc g++ python linux-headers paxctl libgcc libstdc++ gnupg && \
