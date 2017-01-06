@@ -1,8 +1,7 @@
 FROM naartjie/alpine-lein
 
-# taken from mhart/alpine-node http://bit.ly/1UaRTfr
+# taken from mhart/alpine-node http://bit.ly/2hWRZxQ
 ENV VERSION=v6.9.4 NPM_VERSION=3
-#ENV CONFIG_FLAGS="--fully-static" DEL_PKGS="libgcc libstdc++" RM_DIRS=/usr/include
 
 RUN apk add --no-cache curl make gcc g++ python linux-headers paxctl libgcc libstdc++ gnupg && \
   gpg --keyserver ha.pool.sks-keyservers.net --recv-keys \
@@ -38,10 +37,7 @@ RUN apk add --no-cache curl make gcc g++ python linux-headers paxctl libgcc libs
     /usr/share/man /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /root/.gnupg \
     /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
 
-# for native libs, like google-cloud
-RUN apk add --no-cache make gcc g++ libc6-compat && \
-    rm -rf /tmp/* /var/cache/apk/*
-
-# install openssh (git is already in alpine-lein) for 'private' npm modules hosted on github
-RUN apk add --no-cache openssh && \
+# for native libs http://bit.ly/2hWVqoc +  https://github.com/grpc/grpc/issues/6126
+# + install openssh (git is already in alpine-lein) for 'private' npm modules hosted on github
+RUN apk add --no-cache make gcc g++ libc6-compat openssh && \
     rm -rf /tmp/* /var/cache/apk/*
