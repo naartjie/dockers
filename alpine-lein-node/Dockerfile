@@ -1,6 +1,5 @@
 FROM naartjie/alpine-lein
 
-# install node v6.6.0nvm
 # taken from mhart/alpine-node http://bit.ly/1UaRTfr
 ENV VERSION=v6.9.4 NPM_VERSION=3
 #ENV CONFIG_FLAGS="--fully-static" DEL_PKGS="libgcc libstdc++" RM_DIRS=/usr/include
@@ -38,6 +37,10 @@ RUN apk add --no-cache curl make gcc g++ python linux-headers paxctl libgcc libs
   rm -rf /etc/ssl /node-${VERSION}.tar.gz /SHASUMS256.txt.asc /node-${VERSION} ${RM_DIRS} \
     /usr/share/man /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /root/.gnupg \
     /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
+
+# for native libs, like google-cloud
+RUN apk add --no-cache make gcc g++ libc6-compat && \
+    rm -rf /tmp/* /var/cache/apk/*
 
 # install openssh (git is already in alpine-lein) for 'private' npm modules hosted on github
 RUN apk add --no-cache openssh && \
