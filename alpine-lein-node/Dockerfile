@@ -39,5 +39,6 @@ RUN apk add --no-cache curl make gcc g++ python linux-headers paxctl libgcc libs
 
 # for native libs http://bit.ly/2hWVqoc +  https://github.com/grpc/grpc/issues/6126
 # + install openssh (git is already in alpine-lein) for 'private' npm modules hosted on github
-RUN apk add --no-cache make gcc g++ libc6-compat openssh && \
+# + openssl
+RUN apk add --no-cache make gcc g++ libc6-compat openssh openssl && \
     rm -rf /tmp/* /var/cache/apk/*
