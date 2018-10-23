@@ -3,6 +3,8 @@ LABEL author="Marcin Jekot"
 
 ARG UP_VERSION=0.7.7
 
+RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
+
 WORKDIR /opt
 
 ADD https://github.com/apex/up/releases/download/v${UP_VERSION}/up_${UP_VERSION}_linux_amd64.tar.gz /opt
