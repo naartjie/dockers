@@ -1,7 +1,7 @@
 FROM alpine:3.8
 LABEL author="Marcin Jekot"
 
-ARG UP_VERSION=0.7.7
+ARG UP_VERSION=0.8.1
 
 RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 
